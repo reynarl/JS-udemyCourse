@@ -109,3 +109,84 @@ console.log(Object.values(producto));
 
 //retorna toda la informacion
 console.log(Object.entries(producto));
+
+
+/*----------------------------------------------------------
+     Acceder a propiedades: notación de corchetes
+----------------------------------------------------------*/
+
+//Buscar y retornar la propiedad del objeto
+buscarSimboloQuimico = simbolo =>{
+
+    const simbolos = {
+        Al: 'Aluminio',
+        Cl: 'Cloro',
+        S: 'Azufre',
+        He: 'Helio',
+        B: 'Boro'
+    }
+    //usamos corchetes para acceder a la propiedad del objeto que es ingresado siendo string -> simbolos['Cl'] en lugar de simbolos.Cl ya al momento de poner el parámetro será de esta forma: 'Cl' por lo tanto usamos corchetes []
+    return simbolos[simbolo]
+}
+
+console.log(buscarSimboloQuimico('Cl')) //return Cloro
+
+
+/* ---------------------------------------------------------
+                    hasOwnProperty
+Para verificar si un objeto cuenta con esa propiedad*/
+
+const miCuaderno ={
+    color: 'Verde',
+    paginas: 200,
+    materia: 'Matematicas'
+}
+
+//ingresamos como parámetro el objeto del que queremos saber si tiene o no la propiedad, y la propiedad que queremos saber si existe.
+verificarPropiedad = (objeto, propiedad) =>{
+    if(objeto.hasOwnProperty(propiedad)){
+        return `El objeto tiene la propiedad: ${propiedad} con el valor: ${objeto[propiedad]}`
+    }else{
+        return "El objeto no tiene esta propiedad"
+    }
+}
+
+console.log(verificarPropiedad(miCuaderno, 'materia'))
+
+/*----------------------------------------------------
+                    Objetos complejos
+----------------------------------------------------*/
+
+const ordenesDePizzas = [
+    {
+        tipo: 'Peperoni',
+        tamaño: 'individual',
+        costo: 150,
+        toppings: [
+            'extra queso',
+             'champiñones',
+              'piña'
+            ],
+        paraLlevar: true
+    },
+    {
+        tipo: 'Cuatro quesos',
+        tamaño: 'Familiar',
+        costo: 230,
+        toppings: ['extra queso', 'pimientos'],
+        paraLlevar: true
+    }
+]
+
+// console.log(JSON.stringify(ordenesDePizzas[0]))
+
+//diferentes formas de acceder a las propiedades dependiendo de si se encuentren dentro de objetos o arreglos
+
+//accedemos al arreglo en la posicion 0 y obtenemos la propiedad tipo que se encuentra dentro de un objeto con:
+//notacion de corchetes
+console.log(ordenesDePizzas[0]['tipo'])
+//notacion punto
+console.log(ordenesDePizzas[0].tipo)
+//destructuring
+const {tipo, tamaño, costo, toppings} = ordenesDePizzas[0]
+console.log(tipo)
