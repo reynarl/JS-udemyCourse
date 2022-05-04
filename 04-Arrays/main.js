@@ -84,7 +84,8 @@ arreglo.forEach( function(producto){
 })
 
 /*------------------------------------------------------
-                        .map
+                        .map y forEach()
+            map crea un nuevo arreglo, foreach no.
 --------------------------------------------------------*/
 
 const nuevoArreglo = arreglo.map( function(producto){
@@ -96,5 +97,5 @@ const nuevoArreglo2 = arreglo.forEach( function(producto){
 })
 
 console.log(nuevoArreglo);
-//map crea un nuevo arreglo, foreach no.
+
 console.log(nuevoArreglo2); //return undefined
