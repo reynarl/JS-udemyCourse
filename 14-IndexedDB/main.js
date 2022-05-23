@@ -1,3 +1,4 @@
+let DB
 
 function dataBase(){
   //crear base de datos version 1.0
@@ -9,7 +10,10 @@ function dataBase(){
   }
 
   //si la bd se crea correctamente
-  miDB.onsuccess = () => console.log('Base de datos creada correctamente')
+  miDB.onsuccess = () => {
+    console.log('Base de datos creada correctamente')
+    DB = miDB.result
+  }
 
   // configuracion de la BasedeDatos
   // esto se ejecuta una sola vez al crear la base de datos
@@ -27,5 +31,32 @@ function dataBase(){
   }
 }
 
+function crearCliente(){
+  //pare crear registros, actualizar o eliminarlos, indexeddb siempre usa transaction
+  let transaction = DB.transaction(['miDB'], 'readwrite') //para leer y escribir
+
+  transaction.oncomplete = () => {
+    console.log('transaccion completada')
+  }
+
+  transaction.onerror = () => {
+    console.log('Error en la transaccion')
+  }
+
+  const objectStore = transaction.objectStore('miDB')
+
+  const nuevoCliente = {
+    nombre: 'Reyna',
+    email: 'Reyna@gmail.com'
+  }
+
+  const peticion = objectStore.add(nuevoCliente)
+  console.log(peticion)
+}
+
+
 dataBase()
 
+setTimeout(()=> {
+  crearCliente()
+},5000)
